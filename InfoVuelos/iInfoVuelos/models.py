@@ -10,6 +10,8 @@ class Airport(models.Model):
 	#date = models.DateTimeField()
 	#amount = models.IntegerField()
 	#concept = models.TextField(max_length=100)
+	def __unicode__(self):
+		return self.name
 
 class Company (models.Model):
 
@@ -19,7 +21,9 @@ class Company (models.Model):
 	#date = models.DateTimeField()
 	#amount = models.IntegerField()
 	#concept = models.TextField(max_length=100)
-	user = models.ForeignKey(User) # Preguntar a francesc !!!! 
+	user = models.ForeignKey(User) # Preguntar a francesc !!!!
+	def __unicode__(self):
+		return self.Airport.name+" - "+self.name 
 
 class Flight (models.Model):
 

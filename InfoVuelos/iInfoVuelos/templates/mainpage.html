@@ -4,7 +4,15 @@
 	</head>
 <body>
 	<h1>{{ pagetitle }}</h1>
-	<p>{{ contentbody }}</p>
+	{% if user.username %}
+	<p>Welcome {{ user.username }}!
+	Aquí podrà gestionar els seus Flights!</p>
+	{% else %}
+	<p>Welcome anonymous:
+	<a href="/login/">sign in</a>
+	Required.</p>
+	{% endif %}
 </body>
 </html>
+
 
