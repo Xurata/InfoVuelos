@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -13,11 +14,12 @@ class Airport(models.Model):
 class Company (models.Model):
 
 	#code = models.ForeignKey(max_length=2)	
-	#airport = models.ForeignKey(Airport)
+	airport = models.ForeignKey(Airport)
 	name = models.TextField(max_length=100)	
 	#date = models.DateTimeField()
 	#amount = models.IntegerField()
 	#concept = models.TextField(max_length=100)
+	user = models.ForeignKey(User) # Preguntar a francesc !!!! 
 
 class Flight (models.Model):
 
