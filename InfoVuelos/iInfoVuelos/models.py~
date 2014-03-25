@@ -24,3 +24,5 @@ class Flight (models.Model):
 	destination = models.TextField(max_length=3)
 	gate = models.TextField(max_length=3)
 	company = models.ForeignKey(Company)
+	def __unicode__(self):
+		return self.code+" - "+self.origin+" -"+self.destination

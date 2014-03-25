@@ -5,6 +5,17 @@ from django.template.loader import get_template
 from django.contrib.auth.models import User
 from iInfoVuelos.models import *
 
+def mainpage(request):
+	template = get_template('mainpage.html')
+	variables = Context({
+		'titlehead': 'InfoVuelos App',
+		'pagetitle': 'Welcome to the InfoVuelos application',
+		'contentbody': 'Managing flight information',
+		'user':	request.user
+	})
+	output = template.render(variables)
+	return HttpResponse(output)
+
 def userpage(request, username):
 	try:
 		user = User.objects.get(username=username)
@@ -104,13 +115,3 @@ def flight_one(request):
 	output = template.render(variables)
 	return HttpResponse(output)			
 
-def mainpage(request):
-	template = get_template('mainpage.html')
-	variables = Context({
-		'titlehead': 'InfoVuelos App',
-		'pagetitle': 'Welcome to the InfoVuelos application',
-		'contentbody': 'Managing flight information',
-		'user':	request.user
-	})
-	output = template.render(variables)
-	return HttpResponse(output)
