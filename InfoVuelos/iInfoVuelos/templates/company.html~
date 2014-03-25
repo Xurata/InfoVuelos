@@ -7,7 +7,7 @@
 	<ul>
 	{% for comp in companies %}
 	<li>
-	{{comp.name}} - {{comp.code}} - {{comp.airport}}
+	{{airport.code}} - {{comp.name}} - {{comp.code}}
 	</li>
 	{% endfor %}
 	</ul>
