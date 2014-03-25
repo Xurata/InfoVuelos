@@ -3,11 +3,11 @@
 	<title>{{ titlehead}}</title>
 	</head>
 <body>
-	<h1>Companies found:</h1>
+	<h1>Airports found:</h1>
 	<ul>
-	{% for comp in companies %}
+	{% for air in airports %}
 	<li>
-	{{comp.name}} - {{comp.code}} - {{comp.airport}}
+	{{air.name}} - {{air.code}} - {{air.city}}
 	</li>
 	{% endfor %}
 	</ul>

@@ -1,0 +1,15 @@
+<html>
+	<head>
+	<title>{{ titlehead}}</title>
+	</head>
+<body>
+	<h1>Flights found:</h1>
+	<ul>
+	{% for fli in flights %}
+	<li>
+	{{fli.code}} - {{fli.origin}} - {{fli.destination}} - {{fli.gate}} - {{fli.company}}
+	</li>
+	{% endfor %}
+	</ul>
+</body>
+</html>

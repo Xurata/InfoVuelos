@@ -34,6 +34,76 @@ def company_all(request):
 	output = template.render(variables)
 	return HttpResponse(output)
 
+def company_one(request):
+	try:
+		companies = Company.objects.get(code='IB')
+	except:
+		raise Http404('User not found.')
+	
+	template = get_template('companyOne.html')
+	variables = Context({
+		#'username': username,
+		'companies': companies
+		})
+	output = template.render(variables)
+	return HttpResponse(output)
+		
+def airport_all(request):
+	try:
+		airports = Airport.objects.all()
+	except:
+		raise Http404('User not found.')
+	
+	template = get_template('airport.html')
+	variables = Context({
+		#'username': username,
+		'airports': airports
+		})
+	output = template.render(variables)
+	return HttpResponse(output)
+
+def airport_one(request):
+	try:
+		airports = Airport.objects.get(code='LLD')
+	except:
+		raise Http404('User not found.')
+	
+	template = get_template('airportOne.html')
+	variables = Context({
+		#'username': username,
+		'airports': airports
+		})
+	output = template.render(variables)
+	return HttpResponse(output)
+
+def flight_all(request):
+	try:
+		flights = Flight.objects.all()
+	except:
+		raise Http404('User not found.')
+	
+	template = get_template('flight.html')
+	variables = Context({
+		#'username': username,
+		'flights': flights
+		})
+	output = template.render(variables)
+	return HttpResponse(output)	
+	
+def flight_one(request):
+	try:
+		flights = Flight.objects.get(code='IB123')
+	except:
+		raise Http404('User not found.')
+	
+	template = get_template('flightOne.html')
+	variables = Context({
+		#'username': username,
+		'flights': flights
+		})
+	output = template.render(variables)
+	return HttpResponse(output)			
+
 def mainpage(request):
 	template = get_template('mainpage.html')
 	variables = Context({

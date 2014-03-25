@@ -4,12 +4,10 @@
 	</head>
 <body>
 	<h1>Companies found:</h1>
-	<ul>
-	{% for comp in companies %}
+	
 	<li>
-	{{comp.name}} - {{comp.code}} - {{comp.airport}}
+	{{companies.name}} - {{companies.code}} - {{companies.airport}}
 	</li>
-	{% endfor %}
-	</ul>
+	
 </body>
 </html>

@@ -11,7 +11,7 @@ class Airport(models.Model):
 		return self.name
 
 class Company (models.Model):
-	airport = models.ManyToManyField(Airport)
+	#airport = models.ManyToManyField(Airport)
 	name = models.TextField(max_length=100)	
 	code = models.TextField(max_length=2)
 	user = models.ForeignKey(User) # Preguntar a francesc !!!!
@@ -24,3 +24,5 @@ class Flight (models.Model):
 	destination = models.TextField(max_length=3)
 	gate = models.TextField(max_length=3)
 	company = models.ForeignKey(Company)
+	def __unicode__(self):
+		return self.code+" - "+self.origin+" -"+self.destination
