@@ -7,7 +7,10 @@
 	<ul>
 	{% for comp in companies %}
 	<li>
-	{{comp.airport}} - {{comp.name}} - {{comp.code}}
+	<!-- Airport: {{comp.tmp.name}} - {{comp.name}} - {{comp.code}} -->
+	Name: {{ comp.name }} <br/>
+	Code: {{ comp.code }} <br/>
+   	Airport: {% for code in comp.airport.all %}{{ code }}<br/>{% endfor %}
 	</li>
 	{% endfor %}
 	</ul>

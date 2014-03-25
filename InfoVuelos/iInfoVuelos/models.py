@@ -8,7 +8,7 @@ class Airport(models.Model):
 	code = models.TextField(max_length=3)
 	city = models.TextField(max_length=100)
 	def __unicode__(self):
-		return self.name
+		return self.name+" - "+self.code+" - "+self.city
 
 class Company (models.Model):
 	airport = models.ManyToManyField(Airport)
