@@ -8,12 +8,12 @@
 	<ul>
 	{% for sobre in sobres %}
 	<li>
-	{{sobre.name}}
+	{{sobre.Company.name}}
 	</li>
 	{% endfor %}
 	</ul>
 	{% else %}
-	<p>No ha rebut sobres.</p>
+	<p>No Flights.</p>
 	{% endif %}
 </body>
 </html>

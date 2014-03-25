@@ -9,8 +9,8 @@
 	Aquí podrà gestionar els seus Flights!</p>
 	{% else %}
 	<p>Welcome anonymous:
-	Obligatori fer <a href="/login/">sign in</a>
-	per gestionar Vols.</p>
+	<a href="/login/">sign in</a>
+	Required.</p>
 	{% endif %}
 </body>
 </html>
