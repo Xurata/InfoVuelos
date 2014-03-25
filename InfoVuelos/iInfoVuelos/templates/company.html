@@ -1,0 +1,15 @@
+<html>
+	<head>
+	<title>{{ titlehead}}</title>
+	</head>
+<body>
+	<h1>Companies found:</h1>
+	<ul>
+	{% for comp in companies %}
+	<li>
+	{{comp.name}} - {{comp.code}}
+	</li>
+	{% endfor %}
+	</ul>
+</body>
+</html>
