@@ -10,7 +10,7 @@
 	<!-- Airport: {{comp.tmp.name}} - {{comp.name}} - {{comp.code}} -->
 	Name: {{ comp.name }} <br/>
 	Code: {{ comp.code }} <br/>
-   	Airport: {% for code in comp.airport.all %}{{ code }}<br/>{% endfor %}
+   	{% for split in comp.airport.all %}Airport: {{ split.code }}<br/>{% endfor %}
 	</li>
 	{% endfor %}
 	</ul>

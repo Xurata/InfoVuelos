@@ -11,11 +11,10 @@ class Airport(models.Model):
 		return self.name+" - "+self.code+" - "+self.city
 
 class Company (models.Model):
+	airport = models.ManyToManyField(Airport)
 	name = models.TextField(max_length=100)	
 	code = models.TextField(max_length=2)
-	#airport = models.ForeignKey(Airport)
-	airport = models.ManyToManyField(Airport)
-	user = models.ForeignKey(User) # Preguntar a francesc !!!!
+	user = models.ForeignKey(User)
 	def __unicode__(self):
 		return self.name+" - "+self.code
 

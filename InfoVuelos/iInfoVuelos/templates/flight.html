@@ -7,7 +7,11 @@
 	<ul>
 	{% for fli in flights %}
 	<li>
-	{{fli.code}} - {{fli.origin}} - {{fli.destination}} - {{fli.gate}} - {{fli.company}}
+	Flight code: {{fli.code}} <br/>
+	Flight origin: {{fli.origin}} <br/>
+	Flight destination: {{fli.destination}} <br/>
+	Flight gate: {{fli.gate}} <br/>
+	Company Name's flight: {{fli.company.name}}
 	</li>
 	{% endfor %}
 	</ul>

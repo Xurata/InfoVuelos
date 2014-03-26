@@ -4,11 +4,14 @@
 	</head>
 <body>
 	<h1>Flight's information for {{ username }}</h1>
-	{% if sobres %}
+	{% if companies %}
 	<ul>
-	{% for sobre in sobres %}
+	{% for company in companies %}
 	<li>
-	{{sobre.Company.name}}
+	
+	Company name: {{company.name}} <br/>
+	Company code: {{company.code}} <br/>
+	{% for split in comp.airport.all %}Airport name: {{ split.name }}<br/>{% endfor %}
 	</li>
 	{% endfor %}
 	</ul>

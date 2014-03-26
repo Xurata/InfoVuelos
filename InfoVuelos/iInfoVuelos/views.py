@@ -22,16 +22,16 @@ def userpage(request, username):
 	except:
 		raise Http404('User not found.')
 	
-	sobres = user.sobre_set.all() #preguntar!!!
+	companies = user.company_set.all() 
 	template = get_template('userpage.html')
 	variables = Context({
 		'username': username,
-		'sobres': sobres
+		'companies': companies
 		})
 	output = template.render(variables)
 	return HttpResponse(output)
 
-def company_all(request):
+def company_list_all(request):
 	try:
 		companies = Company.objects.all()
 	except:
@@ -44,22 +44,8 @@ def company_all(request):
 		})
 	output = template.render(variables)
 	return HttpResponse(output)
-
-def company_one(request):
-	try:
-		companies = Company.objects.get(code='IB')
-	except:
-		raise Http404('User not found.')
-	
-	template = get_template('companyOne.html')
-	variables = Context({
-		#'username': username,
-		'companies': companies
-		})
-	output = template.render(variables)
-	return HttpResponse(output)
 		
-def airport_all(request):
+def airport_list_all(request):
 	try:
 		airports = Airport.objects.all()
 	except:
@@ -73,21 +59,7 @@ def airport_all(request):
 	output = template.render(variables)
 	return HttpResponse(output)
 
-def airport_one(request):
-	try:
-		airports = Airport.objects.get(code='LLD')
-	except:
-		raise Http404('User not found.')
-	
-	template = get_template('airportOne.html')
-	variables = Context({
-		#'username': username,
-		'airports': airports
-		})
-	output = template.render(variables)
-	return HttpResponse(output)
-
-def flight_all(request):
+def flight_list_all(request):
 	try:
 		flights = Flight.objects.all()
 	except:
@@ -99,19 +71,5 @@ def flight_all(request):
 		'flights': flights
 		})
 	output = template.render(variables)
-	return HttpResponse(output)	
-	
-def flight_one(request):
-	try:
-		flights = Flight.objects.get(code='IB123')
-	except:
-		raise Http404('User not found.')
-	
-	template = get_template('flightOne.html')
-	variables = Context({
-		#'username': username,
-		'flights': flights
-		})
-	output = template.render(variables)
-	return HttpResponse(output)			
+	return HttpResponse(output)				
 

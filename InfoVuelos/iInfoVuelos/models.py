@@ -14,7 +14,7 @@ class Company (models.Model):
 	airport = models.ManyToManyField(Airport)
 	name = models.TextField(max_length=100)	
 	code = models.TextField(max_length=2)
-	user = models.ForeignKey(User) # Preguntar a francesc !!!!
+	user = models.ForeignKey(User)
 	def __unicode__(self):
 		return self.name+" - "+self.code
 
