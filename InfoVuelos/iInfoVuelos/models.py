@@ -15,8 +15,12 @@ class Company (models.Model):
 	name = models.TextField(max_length=100)	
 	code = models.TextField(max_length=2)
 	user = models.ForeignKey(User)
+	
 	def __unicode__(self):
 		return self.name+" - "+self.code
+
+	def get_absolute_url(self):
+		return reverse('infoVuelos:company_detail', kwargs = {'pk' : self.pk})
 
 class Flight (models.Model):
 	code = models.TextField(max_length=5)
@@ -25,5 +29,10 @@ class Flight (models.Model):
 	gate = models.TextField(max_length=3)
 	company = models.OneToOneField(Company)
 	airport = models.OneToOneField(Airport)
+	user = models.ForeignKey(User)
+
 	def __unicode__(self):
-		return self.code+" - "+self.origin+" -"+self.destination+" - "+self.gate
+		return self.code+" - "+self.origin+"-"+self.destination+" - "+self.gate
+
+	def get_absolute_url(self):
+		return reverse('infoVuelos:flight_detail', kwargs = {'pkr' : self.company.pk, 'pk' : self.pk})
