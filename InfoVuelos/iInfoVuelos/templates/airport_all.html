@@ -1,0 +1,12 @@
+{% extends "base.html" %}	
+{% block content %}	
+<h1>	
+	Airports:		
+</h1>	
+<ul>	
+	{% for airports in All_airport_list %}	
+			<li>	{{ airports.name }} </a></li>	
+	{% empty %}<li>Sorry, no airport registered yet.</li>	
+	{% endfor %}	
+</ul>	
+{% endblock	%}

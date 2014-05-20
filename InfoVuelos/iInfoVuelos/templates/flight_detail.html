@@ -1,0 +1,19 @@
+{% extends "base.html" %}	
+{% block content %}	
+<h1>	
+	{{flight.name}}	
+		 {%	if user	== flight.user %}	
+			(<a	href="{% url 'flight_edit' flight.company.id flight.id %}">edit</a>)	
+		{% endif %}	
+</h1>	
+<h2>Dades del Flight {{flight.id}}:</h2>	
+<ul>
+<p>	
+	<li> Flight Code: {{flight.code }},</li> 
+	<li> Origin: {{ flight.origin }} </li>
+	<li> Destination: {{flight.destination }} </li>
+	<li> Boarding Gate:  {{ flight.gate }} </li>	
+	
+</p>
+</ul>
+{% endblock %} 

@@ -1,0 +1,33 @@
+{% extends "base.html" %}	
+{% block content %}	
+<h1>	
+	{{company.name}}	
+		 {%	if user	== company.user %}	
+			(<a	href="{% url 'company_edit' company.id %}">edit</a>)	
+		{% endif %}	
+</h1>	
+<h2>Dades de la Companyia:</h2>	
+<p>	
+<ul>
+	<li>Company Code: {{ company.code }}
+	<li>Company Name: {{ company.name }}
+	{% for split in company.airport.all %}
+		<li>Airport: {{ split.code }}</li>
+	{% endfor %}
+	<br/> 
+	</p>
+</ul>
+<h2>
+	Flight
+	{% if user %}
+		(<a href="{% url 'flight_create' company.id %}">add</a>)
+	{% endif %}
+</h2>
+<ul>
+	{% for flight in company.flight.all %}
+		<li><a href="{% url 'flight_detail' company.id flight.id %}">
+			{{ flight.code }}</a></li>
+	{% empty %}<li>Sorry, no flights for this company yet.</li>
+	{% endfor %}
+</ul>
+{% endblock %} 

@@ -1,0 +1,13 @@
+{% extends "base.html" %}	
+{% block content %}	
+<h1>	
+	Flights:
+		
+</h1>	
+<ul>	
+	{% for flights in All_flight_list %}	
+			<li>	{{ flights.code }} </li>	
+	{% empty %}<li>Sorry, no flight registered yet.</li>	
+	{% endfor %}	
+</ul>	
+{% endblock	%}

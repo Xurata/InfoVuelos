@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 
@@ -20,7 +21,7 @@ class Company (models.Model):
 		return self.name+" - "+self.code
 
 	def get_absolute_url(self):
-		return reverse('infoVuelos:company_detail', kwargs = {'pk' : self.pk})
+		return reverse('company_detail', kwargs = {'pk' : self.pk})
 
 class Flight (models.Model):
 	code = models.TextField(max_length=5)
@@ -35,4 +36,4 @@ class Flight (models.Model):
 		return self.code+" - "+self.origin+"-"+self.destination+" - "+self.gate
 
 	def get_absolute_url(self):
-		return reverse('infoVuelos:flight_detail', kwargs = {'pkr' : self.company.pk, 'pk' : self.pk})
+		return reverse('flight_detail', kwargs = {'pkr' : self.company.pk, 'pk' : self.pk})
