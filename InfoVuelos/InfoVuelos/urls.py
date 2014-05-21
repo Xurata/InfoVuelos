@@ -25,7 +25,7 @@ urlpatterns = patterns('',
     url(r'^login/$','django.contrib.auth.views.login'),
     url(r'^logout/$','django.contrib.auth.views.logout'),
     
-    # Airport list /airport
+    # Airport list ex.: /airport
     url(r'^airport/$',
     	ListView.as_view(
     		queryset=Airport.objects.all(),
@@ -33,7 +33,7 @@ urlpatterns = patterns('',
     		template_name='airport_all.html'),
     		name='airport_all'),
     
-    # Company list /company
+    # Company list  ex.: /company
     url(r'^company/$',
     	ListView.as_view(
     		queryset=Company.objects.all(),
@@ -41,7 +41,7 @@ urlpatterns = patterns('',
     		template_name='company_all.html'),
     		name='company_all'),
     
-    # Flight list /flight
+    # Flight list  ex.: /flight
     url(r'^flight/$',
     	ListView.as_view(
     		queryset=Flight.objects.all(),
@@ -49,24 +49,24 @@ urlpatterns = patterns('',
     		template_name='flight_all.html'),
     		name='flight_all'),
     
-    # Company details, /company/1			
+    # Company details, ex.: /company/1			
     url(r'^company/(?P<pk>\d+)/$',
     	CompanyDetail.as_view(),
     	name='company_detail'),
     
-    # Flight details, /flight/1			
+    # Flight details, ex.: /flight/1			
     url(r'^company/(?P<pkr>\d+)/flight/(?P<pk>\d+)/$',
     	DetailView.as_view(
     	model = Flight,
     	template_name='flight_detail.html'),
     	name='flight_detail'),
 
-	#Create a company,  /company/create/
+	#Create a company, ex.: /company/create/
 	url(r'^company/create/$',
 		CompanyCreate.as_view(),
 		name='company_create'),
 	
-	#Edit restaurant details, ex.: /company/1/edit/
+	#Edit company details, ex.: /company/1/edit/
 	url(r'^company/(?P<pk>\d+)/edit/$',
 		UpdateView.as_view(
 			model = Company,
@@ -74,7 +74,7 @@ urlpatterns = patterns('',
 			form_class = CompanyForm),
 		name='company_edit'),
 
-	#Create a flight,  /company/1/flight/create
+	#Create a flight, ex.: /company/1/flight/create
 	url(r'^company/(?P<pk>\d+)/flight/create/$',
 		FlightCreate.as_view(),
 		name='flight_create'),
@@ -87,7 +87,7 @@ urlpatterns = patterns('',
 			form_class = FlightForm),
 		name='flight_edit'),
 	
-	#Delete a Company
+	#Delete a Company ex.: company/1/delete
 	url(r'^company/(?P<pk>[0-9]+)/delete/$', delete_Company, name='company_delete'),
 )		
 # API Restfull
