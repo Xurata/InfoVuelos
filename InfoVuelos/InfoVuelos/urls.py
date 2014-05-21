@@ -3,7 +3,7 @@ from iInfoVuelos.views import *
 from django.views.generic import DetailView, ListView, UpdateView
 from iInfoVuelos.forms import CompanyForm, FlightForm
 from iInfoVuelos.views import CompanyCreate, FlightCreate, CompanyDetail, APICompanyList, \
-								APICompanyDetail, APIFlightList, APIFlightDetail
+								APICompanyDetail, APIFlightList, APIFlightDetail, delete_Company
 from iInfoVuelos.models import Airport, Flight, Company
 
 # Uncomment the next two lines to enable the admin:
@@ -23,6 +23,7 @@ urlpatterns = patterns('',
 	url(r'^$', mainpage, name ='Home'),
     url(r'^user/(\w+)/$', userpage),
     url(r'^login/$','django.contrib.auth.views.login'),
+    url(r'^logout/$','django.contrib.auth.views.logout'),
     
     # Airport list /airport
     url(r'^airport/$',
@@ -84,7 +85,10 @@ urlpatterns = patterns('',
 			model = Flight,
 			template_name = 'forms.html',
 			form_class = FlightForm),
-		name='flight_edit'),		
+		name='flight_edit'),
+	
+	#Delete a Company
+	url(r'^company/(?P<pk>[0-9]+)/delete/$', delete_Company, name='company_delete'),
 )		
 # API Restfull
 urlpatterns += patterns('',	

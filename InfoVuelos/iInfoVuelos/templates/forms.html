@@ -11,7 +11,7 @@
                 });
             });
         
-        $("#id_destination").autocomplete({
+        	$("#id_destination").autocomplete({
                 source: function( request, response ) {
                     $.ajax({
                         url: "http://api.geonames.org/searchJSON",
@@ -20,9 +20,9 @@
                             featureClass: "P",
                             maxRows: 10,
                             name_startsWith: request.term,
-                            username: "demo",    
+                            username: "demo"
                         },
-                    	success: function( data ) {
+                        success: function( data ) {
                             response( $.map( data.geonames, function( item ) {
                                 return {
                                     label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
@@ -42,7 +42,7 @@
                         $("#id_zipCode").val("");
                     }
                 }
-          });            
+            });           
          });
      </script>  
           

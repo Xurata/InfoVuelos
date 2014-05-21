@@ -42,8 +42,8 @@ class Migration(SchemaMigration):
             ('origin', self.gf('django.db.models.fields.TextField')(max_length=3)),
             ('destination', self.gf('django.db.models.fields.TextField')(max_length=3)),
             ('gate', self.gf('django.db.models.fields.TextField')(max_length=3)),
+            ('company', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['iInfoVuelos.Company'], unique=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('company', self.gf('django.db.models.fields.related.ForeignKey')(related_name='flights', to=orm['iInfoVuelos.Company'])),
         ))
         db.send_create_signal(u'iInfoVuelos', ['Flight'])
 
@@ -117,7 +117,7 @@ class Migration(SchemaMigration):
         u'iInfoVuelos.flight': {
             'Meta': {'object_name': 'Flight'},
             'code': ('django.db.models.fields.TextField', [], {'max_length': '5'}),
-            'company': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'flights'", 'to': u"orm['iInfoVuelos.Company']"}),
+            'company': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['iInfoVuelos.Company']", 'unique': 'True'}),
             'destination': ('django.db.models.fields.TextField', [], {'max_length': '3'}),
             'gate': ('django.db.models.fields.TextField', [], {'max_length': '3'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),

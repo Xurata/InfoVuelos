@@ -28,9 +28,11 @@ class Flight (models.Model):
 	origin = models.TextField(max_length=3)
 	destination = models.TextField(max_length=3)
 	gate = models.TextField(max_length=3)
-	company = models.OneToOneField(Company, unique=False)
-	airport = models.OneToOneField(Airport)
+	#company = models.OneToOneField(Company)
+	#airport = models.ManyToOneField(Airport)
 	user = models.ForeignKey(User)
+	#airport = models.ForeignKey(Airport, related_name='airports')
+	company = models.ForeignKey(Company, related_name='flights')
 
 	def __unicode__(self):
 		return self.code+" - "+self.origin+"-"+self.destination+" - "+self.gate

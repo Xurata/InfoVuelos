@@ -43,9 +43,17 @@ class Migration(SchemaMigration):
             ('destination', self.gf('django.db.models.fields.TextField')(max_length=3)),
             ('gate', self.gf('django.db.models.fields.TextField')(max_length=3)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('company', self.gf('django.db.models.fields.related.ForeignKey')(related_name='flights', to=orm['iInfoVuelos.Company'])),
         ))
         db.send_create_signal(u'iInfoVuelos', ['Flight'])
+
+        # Adding M2M table for field company on 'Flight'
+        m2m_table_name = db.shorten_name(u'iInfoVuelos_flight_company')
+        db.create_table(m2m_table_name, (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('flight', models.ForeignKey(orm[u'iInfoVuelos.flight'], null=False)),
+            ('company', models.ForeignKey(orm[u'iInfoVuelos.company'], null=False))
+        ))
+        db.create_unique(m2m_table_name, ['flight_id', 'company_id'])
 
 
     def backwards(self, orm):
@@ -60,6 +68,9 @@ class Migration(SchemaMigration):
 
         # Deleting model 'Flight'
         db.delete_table(u'iInfoVuelos_flight')
+
+        # Removing M2M table for field company on 'Flight'
+        db.delete_table(db.shorten_name(u'iInfoVuelos_flight_company'))
 
 
     models = {
@@ -117,7 +128,7 @@ class Migration(SchemaMigration):
         u'iInfoVuelos.flight': {
             'Meta': {'object_name': 'Flight'},
             'code': ('django.db.models.fields.TextField', [], {'max_length': '5'}),
-            'company': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'flights'", 'to': u"orm['iInfoVuelos.Company']"}),
+            'company': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['iInfoVuelos.Company']", 'symmetrical': 'False'}),
             'destination': ('django.db.models.fields.TextField', [], {'max_length': '3'}),
             'gate': ('django.db.models.fields.TextField', [], {'max_length': '3'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),

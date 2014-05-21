@@ -24,9 +24,9 @@
 	{% endif %}
 </h2>
 <ul>
-	{% for flight in company.flight.all %}
+	{% for flight in company.flights.all %}
 		<li><a href="{% url 'flight_detail' company.id flight.id %}">
-			{{ flight.code }}</a></li>
+			{{ flight.gate }}</a></li>
 	{% empty %}<li>Sorry, no flights for this company yet.</li>
 	{% endfor %}
 </ul>

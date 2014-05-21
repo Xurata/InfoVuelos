@@ -10,7 +10,7 @@
 <body>	
 <div id="header">	
 		{% block header	%}	
-			{% if user.username %}<p>User :  {{ user.username }}</p>	
+			{% if user.username %}<p>User :  {{ user.username }} (<a href="/logout/?next=/">logout</a>) </p>	
 			{% else %}<p><a	href="/login/">Sign	in</a></p>{% endif %}	
 		{% endblock %}	
 </div>	

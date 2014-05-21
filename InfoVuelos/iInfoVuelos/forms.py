@@ -4,9 +4,9 @@ from iInfoVuelos.models import Company, Flight
 class CompanyForm (ModelForm):
 	class Meta:
 		model = Company
-		exclude = ('user', 'date',)
+		exclude = ('user', 'date', )
 
 class FlightForm (ModelForm):
 	class Meta:
 		model = Flight
-		exclude = ('user', 'date','company',)
+		exclude = ('user', 'date',)

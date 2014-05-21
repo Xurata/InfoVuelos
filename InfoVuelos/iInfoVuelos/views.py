@@ -3,8 +3,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404
+from django.shortcuts import get_object_or_404
 from django.template import Context
 from django.template.loader import get_template
 from django.contrib.auth.models import User
@@ -13,6 +15,7 @@ from django.views.generic import DetailView
 from forms import CompanyForm, FlightForm
 from django.views.generic.edit import CreateView
 from serializers import CompanySerializer, FlightSerializer
+from django.http import HttpResponseRedirect
 
 def mainpage(request):
 	template = get_template('mainpage.html')
@@ -66,6 +69,14 @@ class FlightCreate(CreateView):
 		form.instance.user = self.request.user
 		form.instance.company = Company.objects.get(id=self.kwargs['pk'])
 		return super(FlightCreate, self).form_valid(form)
+		
+@login_required()
+def delete_Company(request, pk):
+    if request.user in User.objects.filter(groups__name='name'):
+		raise PermissionDenied
+    get_object_or_404(Company, pk=pk).delete()
+    return HttpResponseRedirect("/company/")
+		
 
 # API InfoVuelos
 
