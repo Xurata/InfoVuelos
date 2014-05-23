@@ -11,7 +11,7 @@
 	
 	Company name: {{company.name}} <br/>
 	Company code: {{company.code}} <br/>
-	{% for split in comp.airport.all %}Airport name: {{ split.name }}<br/>{% endfor %}
+	{% for split in company.airport.all %}Airport name: {{ split.name }}<br/>{% endfor %}
 	</li>
 	{% endfor %}
 	</ul>
