@@ -14,7 +14,7 @@ from iInfoVuelos.models import *
 from django.views.generic import DetailView
 from forms import CompanyForm, FlightForm
 from django.views.generic.edit import CreateView
-from serializers import CompanySerializer, FlightSerializer
+from serializers import CompanySerializer, FlightSerializer, CompanyReviewSerializer
 from django.http import HttpResponseRedirect
 
 def mainpage(request):
@@ -49,6 +49,7 @@ class CompanyDetail(DetailView):
 	
 	def get_context_data(self,**kwargs):
 		context	= super(CompanyDetail,self).get_context_data(**kwargs)
+		context['RATING_CHOICES'] = CompanyReview.RATING_CHOICES
 		return context
 	
 class CompanyCreate(CreateView):
@@ -76,7 +77,17 @@ def delete_Company(request, pk):
 		raise PermissionDenied
     get_object_or_404(Company, pk=pk).delete()
     return HttpResponseRedirect("/company/")
-		
+
+@login_required()
+def review(request, pk):
+    company = get_object_or_404(Company, pk=pk)
+    new_review = CompanyReview(
+        rating=request.POST['rating'],
+        comment=request.POST['comment'],
+        user=request.user,
+        company=company)
+    new_review.save()
+    return HttpResponseRedirect(reverse('company_detail', args=(company.id,)))		
 
 # API InfoVuelos
 
@@ -95,3 +106,11 @@ class APIFlightList(generics.ListCreateAPIView):
 class APIFlightDetail(generics.RetrieveUpdateDestroyAPIView):
 	model = Flight
 	serializer_class = FlightSerializer
+
+class APICompanyReviewList(generics.ListCreateAPIView):
+    model = CompanyReview
+    serializer_class = CompanyReviewSerializer
+
+class APICompanyReviewDetail(generics.RetrieveUpdateDestroyAPIView):
+    model = CompanyReview
+    serializer_class = CompanyReviewSerializer	

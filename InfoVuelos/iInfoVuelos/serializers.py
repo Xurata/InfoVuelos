@@ -1,7 +1,7 @@
 from rest_framework.fields import CharField
 from rest_framework.relations import HyperlinkedRelatedField, HyperlinkedIdentityField
 from rest_framework.serializers import HyperlinkedModelSerializer
-from models import Airport, Company, Flight
+from models import Airport, Company, Flight, CompanyReview
 
 class CompanySerializer(HyperlinkedModelSerializer):
     url = HyperlinkedIdentityField(view_name='company-detail')
@@ -19,3 +19,11 @@ class FlightSerializer(HyperlinkedModelSerializer):
         model = Flight
         fields = ('url', 'code', 'origin', 'destination', 'gate', 'company', 'user')
 
+class CompanyReviewSerializer(HyperlinkedModelSerializer):
+    url = HyperlinkedIdentityField(view_name='companyreview-detail')
+    restaurant = HyperlinkedRelatedField(view_name='company-detail')
+    user = CharField(read_only=True)
+    class Meta:
+        model = CompanyReview
+        fields = ('url', 'rating', 'comment', 'user', 'date', 'company')
+        
