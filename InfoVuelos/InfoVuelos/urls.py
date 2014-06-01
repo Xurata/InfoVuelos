@@ -103,5 +103,6 @@ urlpatterns += patterns('',
 	url(r'^api/company/(?P<pk>\d+)/$', APICompanyDetail.as_view(), name='company-detail'),	
 	url(r'^api/flight/$', APIFlightList.as_view(), name='flight_all'),	
 	url(r'^api/flight/(?P<pk>\d+)/$', APIFlightDetail.as_view(), name='flight-detail'),	
-							
+	url(r'^api/companyreviews/$', APICompanyReviewList.as_view(), name='companyreview-list'),	
+	url(r'^api/companyreviews/(?P<pk>\d+)/$', APICompanyReviewDetail.as_view(),name='companyreview-detail'),							
 )
