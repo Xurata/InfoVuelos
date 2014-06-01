@@ -9,10 +9,13 @@
 <h2>Dades de la Companyia:</h2>	
 <p>	
 <ul>
-	<li>Company Code: {{ company.code }}
-	<li>Company Name: {{ company.name }}
+<span vocab="http://schema.org/" typeof="Airline">
+	<span property="iataCode"><li>Company Code: {{ company.code }}</li></span>
+	<span property="name"><li>Company Name: {{ company.name }}</li></span>
+
+<span vocab="http://schema.org/" typeof="Flight">
 	{% for split in company.airport.all %}
-		<li>Airport: {{ split.code }}</li>
+		<li><span property="departureAirport">Airport: {{ split.code }}</span></li>
 	{% endfor %}
 	<br/> 
 	</p>
@@ -24,9 +27,10 @@
 	{% endif %}
 </h2>
 <ul>
+
 	{% for flight in company.flights.all %}
 		<li><a href="{% url 'flight_detail' company.id flight.id %}">
-			{{ flight.gate }}</a></li>
+			<span property="arrivalGate">{{ flight.gate }}</span></a></li>
 	{% empty %}<li>Sorry, no flights for this company yet.</li>
 	{% endfor %}
 </ul>
