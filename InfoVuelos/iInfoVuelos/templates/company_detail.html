@@ -30,7 +30,9 @@
 
 	{% for flight in company.flights.all %}
 		<li><a href="{% url 'flight_detail' company.id flight.id %}">
-			<span property="arrivalGate">{{ flight.gate }}</span></a></li>
+			<span property="departureGate">{{ flight.gate }}</span>
+			<span property="flightNumber">{{ flight.code }}</span>
+			</a></li>
 	{% empty %}<li>Sorry, no flights for this company yet.</li>
 	{% endfor %}
 </ul>

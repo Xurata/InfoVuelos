@@ -5,8 +5,10 @@
 </h1>	
 <ul>	
 	{% for airports in All_airport_list %}	
-			<li>	{{ airports.name }} </a></li>	
-	{% empty %}<li>Sorry, no airport registered yet.</li>	
+		<li>	{{ airports.name }} </a></li>	
+		<li>	{{ airports.code }} </a></li>
+		<li>	{{ airports.city }} </a></li>	
+			{% empty %}<li>Sorry, no airport registered yet.</li>	
 	{% endfor %}	
 </ul>	
 {% endblock	%}

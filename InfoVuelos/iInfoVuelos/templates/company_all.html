@@ -7,7 +7,7 @@
 <ul>	
 	{% for company in All_company_list %}	
 			<li><a	href="{% url 'company_detail' company.id %}">	
-			{{ company.name }}</a></li>	
+			{{ company.name }}-{{ company.code }}</a></li>	
 	{% empty %}<li>Sorry, no companies registered yet.</li>	
 	{% endfor %}	
 </ul>	

@@ -6,7 +6,9 @@
 </h1>	
 <ul>	
 	{% for flights in All_flight_list %}	
-			<li>	{{ flights.code }} </li>	
+			<li>	{{ flights.code }} </li>
+			<li>	{{ flights.origin }} </li>	
+			<li>	{{ flights.destination }} </li>		
 	{% empty %}<li>Sorry, no flight registered yet.</li>	
 	{% endfor %}	
 </ul>	
